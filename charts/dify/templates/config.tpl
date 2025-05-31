@@ -232,7 +232,7 @@ REDIS_PORT: {{ .port | toString | quote }}
 # REDIS_PASSWORD: {{ .password | quote }}
 REDIS_USE_SSL: {{ .useSSL | toString | quote }}
 # use redis db 0 for redis cache
-REDIS_DB: "0"
+REDIS_DB: {{ .db | quote }}
   {{- end }}
 {{- else if .Values.redis.enabled }}
 {{- $redisHost := printf "%s-redis-master" .Release.Name -}}
@@ -243,7 +243,7 @@ REDIS_PORT: {{ .master.service.ports.redis | toString | quote }}
 # REDIS_PASSWORD: {{ .auth.password | quote }}
 REDIS_USE_SSL: {{ .tls.enabled | toString | quote }}
 # use redis db 0 for redis cache
-REDIS_DB: "0"
+REDIS_DB: {{ .db | quote }}
   {{- end }}
 {{- end }}
 {{- end }}
